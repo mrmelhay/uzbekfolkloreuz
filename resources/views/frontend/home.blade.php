@@ -13,23 +13,25 @@
                             <div class="absolute inset-0">
                                 <img src="{{ $slider->image }}" alt="{{ $slider->title }}" class="hidden md:block w-full h-full object-cover">
                                 <img src="{{ $slider->image_mobile ?? $slider->image }}" alt="{{ $slider->title }}" class="block md:hidden w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
                             </div>
-                            <div class="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center text-white">
-                                <h2 class="text-3xl md:text-5xl font-bold mb-2">{{ $slider->title }}</h2>
-                                @if($slider->subtitle)
-                                    <h3 class="text-xl md:text-2xl font-medium mb-4 text-[#F07F15]">{{ $slider->subtitle }}</h3>
-                                @endif
-                                @if($slider->description)
-                                    <p class="text-lg md:text-xl mb-8 max-w-2xl">{{ $slider->description }}</p>
-                                @endif
-                                @if($slider->button_text && $slider->button_url)
-                                    <div>
-                                        <a href="{{ $slider->button_url }}" class="inline-block bg-[#F07F15] text-white px-8 py-3 rounded-full font-bold hover:bg-[#d0690c] transition duration-300">
-                                            {{ $slider->button_text }}
-                                        </a>
-                                    </div>
-                                @endif
+                            <div class="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center">
+                                <div class="max-w-2xl bg-white/30 backdrop-blur-sm p-6 md:p-10 rounded-2xl shadow-xl border border-white/30">
+                                    <h2 class="text-3xl md:text-5xl font-bold mb-2 text-gray-900">{{ $slider->title }}</h2>
+                                    @if($slider->subtitle)
+                                        <h3 class="text-xl md:text-2xl font-medium mb-4 text-[#F07F15]">{{ $slider->subtitle }}</h3>
+                                    @endif
+                                    @if($slider->description)
+                                        <p class="text-lg md:text-xl mb-8 text-gray-800 leading-relaxed">{{ $slider->description }}</p>
+                                    @endif
+                                    @if($slider->button_text && $slider->button_url)
+                                        <div>
+                                            <a href="{{ $slider->button_url }}" class="inline-block bg-[#F07F15] text-white px-8 py-3 rounded-full font-bold hover:bg-[#d0690c] transition duration-300 shadow-md">
+                                                {{ $slider->button_text }}
+                                            </a>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     @endforeach

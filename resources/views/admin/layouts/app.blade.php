@@ -43,6 +43,9 @@
                 <a href="{{ route('media.index') }}" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md {{ request()->routeIs('media.*') ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
                     Media
                 </a>
+                <a href="{{ route('admin.profile.edit') }}" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md {{ request()->routeIs('admin.profile.*') ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                    Profile Settings
+                </a>
                 <form action="{{ route('admin.logout') }}" method="POST" class="mt-4">
                     @csrf
                     <button type="submit" class="w-full group flex items-center px-4 py-3 text-sm font-medium rounded-md text-red-300 hover:bg-red-900/50 hover:text-white">

@@ -21,6 +21,10 @@ Route::prefix('admin')->group(function () {
         Route::resource('sliders', \App\Http\Controllers\Admin\SliderController::class);
         Route::resource('home_sections', \App\Http\Controllers\Admin\HomeSectionController::class);
         Route::resource('media', \App\Http\Controllers\Admin\MediaController::class)->except(['show', 'edit', 'update']);
+
+        // Profile routes
+        Route::get('/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('admin.profile.edit');
+        Route::put('/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('admin.profile.update');
     });
 });
 
