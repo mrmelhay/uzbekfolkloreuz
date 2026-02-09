@@ -43,6 +43,33 @@
         </div>
     @endif
 
+    <!-- Home Sections (Text + Image) -->
+    @if($homeSections->count() > 0)
+        @foreach($homeSections as $index => $section)
+            <section class="py-16 {{ $index % 2 == 0 ? 'bg-white' : 'bg-gray-50' }}">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col {{ $index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse' }} items-center gap-12">
+                        <div class="md:w-1/2">
+                            <h2 class="text-3xl font-bold text-black mb-6">{{ $section->title }}</h2>
+                            <div class="text-lg text-black leading-relaxed whitespace-pre-line">
+                                {{ $section->content }}
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            @if($section->image)
+                                <img src="{{ $section->image }}" alt="{{ $section->title }}" class="rounded-2xl shadow-xl w-full h-auto object-cover border-4 border-white">
+                            @else
+                                <div class="bg-gray-200 rounded-2xl aspect-video flex items-center justify-center text-gray-400">
+                                    No Image
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endforeach
+    @endif
+
     <!-- Latest Articles -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,14 +82,14 @@
                                 <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
                                     {{ $article->category->title ?? 'Kategoriya' }}
                                 </span>
-                                <span class="text-gray-500 text-xs">{{ $article->created_at->format('d.m.Y') }}</span>
+                                <span class="text-gray-700 text-xs">{{ $article->created_at->format('d.m.Y') }}</span>
                             </div>
-                            <h3 class="text-xl font-bold mb-2 text-gray-900 group-hover:text-[#F07F15] transition">
+                            <h3 class="text-xl font-bold mb-2 text-black group-hover:text-[#F07F15] transition">
                                 <a href="{{ \App\Helpers\LinkHelper::route('article.show', ['slug' => $article->slug]) }}">
                                     {{ Str::limit($article->title, 60) }}
                                 </a>
                             </h3>
-                            <p class="text-gray-600 mb-4 line-clamp-3">
+                            <p class="text-black mb-4 line-clamp-3">
                                 {{ strip_tags($article->content) }}
                             </p>
                             <a href="{{ \App\Helpers\LinkHelper::route('article.show', ['slug' => $article->slug]) }}" class="inline-flex items-center text-[#F07F15] font-medium hover:underline">
@@ -91,29 +118,29 @@
                     <div class="w-12 h-12 bg-[#F07F15] bg-opacity-10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#F07F15] transition">
                         <svg class="w-6 h-6 text-[#F07F15] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">{{ __('card_uzbek_folklore_title') }}</h3>
-                    <p class="text-sm text-gray-500">{{ __('card_uzbek_folklore_desc') }}</p>
+                    <h3 class="text-lg font-bold text-black mb-2">{{ __('card_uzbek_folklore_title') }}</h3>
+                    <p class="text-sm text-gray-700">{{ __('card_uzbek_folklore_desc') }}</p>
                  </a>
                  <a href="{{ \App\Helpers\LinkHelper::route('category.show', ['slug' => 'folklorshunos-olimlar']) }}" class="group block bg-white rounded-xl shadow-md p-6 hover:-translate-y-1 transition duration-300">
                     <div class="w-12 h-12 bg-[#F07F15] bg-opacity-10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#F07F15] transition">
                         <svg class="w-6 h-6 text-[#F07F15] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">{{ __('card_scholars_title') }}</h3>
-                    <p class="text-sm text-gray-500">{{ __('card_scholars_desc') }}</p>
+                     <h3 class="text-lg font-bold text-black mb-2">{{ __('card_scholars_title') }}</h3>
+                    <p class="text-sm text-gray-700">{{ __('card_scholars_desc') }}</p>
                  </a>
                  <a href="{{ \App\Helpers\LinkHelper::route('category.show', ['slug' => 'folklor-ansambllari']) }}" class="group block bg-white rounded-xl shadow-md p-6 hover:-translate-y-1 transition duration-300">
                     <div class="w-12 h-12 bg-[#F07F15] bg-opacity-10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#F07F15] transition">
                         <svg class="w-6 h-6 text-[#F07F15] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 3-2 3-2zm0 0v-8"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">{{ __('card_ensembles_title') }}</h3>
-                    <p class="text-sm text-gray-500">{{ __('card_ensembles_desc') }}</p>
+                    <h3 class="text-lg font-bold text-black mb-2">{{ __('card_ensembles_title') }}</h3>
+                    <p class="text-sm text-gray-700">{{ __('card_ensembles_desc') }}</p>
                  </a>
                  <a href="{{ \App\Helpers\LinkHelper::route('category.show', ['slug' => 'folklor-janrlari']) }}" class="group block bg-white rounded-xl shadow-md p-6 hover:-translate-y-1 transition duration-300">
                     <div class="w-12 h-12 bg-[#F07F15] bg-opacity-10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#F07F15] transition">
                         <svg class="w-6 h-6 text-[#F07F15] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">{{ __('card_genres_title') }}</h3>
-                    <p class="text-sm text-gray-500">{{ __('card_genres_desc') }}</p>
+                    <h3 class="text-lg font-bold text-black mb-2">{{ __('card_genres_title') }}</h3>
+                    <p class="text-sm text-gray-700">{{ __('card_genres_desc') }}</p>
                  </a>
              </div>
         </div>

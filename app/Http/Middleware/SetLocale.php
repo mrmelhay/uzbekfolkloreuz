@@ -16,12 +16,10 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $locale = $request->route('locale');
+        $locale = $request->route('locale') ?? $request->get('locale');
 
         if (!in_array($locale, ['uz', 'en'])) {
             $locale = 'uz';
-             // If locale is missing or invalid in URL, we might want to redirect
-             // but for simpler implementation with optional parameter, we just set default
         }
 
         App::setLocale($locale);

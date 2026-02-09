@@ -19,6 +19,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('articles', \App\Http\Controllers\Admin\ArticleController::class);
         Route::resource('pages', \App\Http\Controllers\Admin\PageController::class);
         Route::resource('sliders', \App\Http\Controllers\Admin\SliderController::class);
+        Route::resource('home_sections', \App\Http\Controllers\Admin\HomeSectionController::class);
         Route::resource('media', \App\Http\Controllers\Admin\MediaController::class)->except(['show', 'edit', 'update']);
     });
 });
